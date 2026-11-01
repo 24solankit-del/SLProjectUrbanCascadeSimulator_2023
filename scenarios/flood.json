@@ -1,0 +1,11 @@
+{
+    "name": "Ambazari Flood",
+    "description": "Monsoon surge causes catastrophic sluice breach at Ambazari Reservoir. Floodwater damages the drainage and water head infrastructure, cascading into transport and power dependencies.",
+    "seed": "NAGPUR-FLOOD-2026",
+    "failNodes": ["AMBAZARI_RESERVOIR"],
+    "messages": {
+        "AMBAZARI_RESERVOIR": "[DISASTER INJECTED] Monsoon Surge & Sluice Breach at Ambazari Reservoir!"
+    },
+    "severity": "HIGH",
+    "affectedSectors": ["Water", "Transport", "Power"]
+}

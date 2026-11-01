@@ -1,0 +1,73 @@
+Scenario,Node_ID,Node_Name,Department,Final_State,Threshold,Stress_Level,Failed_At_Tick
+Ambazari Flood,KORADI_POWER,Koradi Thermal Power Stn,Power,OPERATIONAL,0.8,0.0,N/A
+Ambazari Flood,KHAPARKHEDA_SUB,Khaparkheda Substation,Power,OPERATIONAL,0.7,0.0,N/A
+Ambazari Flood,DHARAMPETH_SUB,Dharampeth Power Substation,Power,OPERATIONAL,0.6,0.0,1
+Ambazari Flood,BUTIBORI_GRID,Butibori Industrial Substation,Power,OPERATIONAL,0.65,0.0,N/A
+Ambazari Flood,GOREWADA_WATER,Gorewada Water Filtration,Water,OPERATIONAL,0.75,0.0,2
+Ambazari Flood,AMBAZARI_RESERVOIR,Ambazari Sluice & Reservoir,Water,OPERATIONAL,0.6,0.0,N/A
+Ambazari Flood,KANHAN_PUMP,Kanhan Water Pumping Line,Water,OPERATIONAL,0.7,0.0,N/A
+Ambazari Flood,MIHAN_DATACENTER,MIHAN Cyber Data Hub,Telecom,OPERATIONAL,0.85,0.0,N/A
+Ambazari Flood,SADAR_TELCO,Sadar BSNL Telecom Tower,Telecom,OPERATIONAL,0.6,0.0,2
+Ambazari Flood,SITABULDI_METRO,Sitabuldi Interchange Metro,Transport,OPERATIONAL,0.7,0.0,2
+Ambazari Flood,NAGPUR_RLY_JN,Nagpur Central Railway Jn,Transport,DEGRADED,0.65,0.0,N/A
+Ambazari Flood,AIRPORT_SONEGAON,Dr. Ambedkar Intl Airport,Transport,OPERATIONAL,0.8,0.0,N/A
+Ambazari Flood,ZERO_MILE_TRAFFIC,Zero Mile Traffic Control,Transport,OPERATIONAL,0.55,0.0,2
+Ambazari Flood,AIIMS_NAGPUR,AIIMS Nagpur Super-Speciality,Health,DEGRADED,0.85,0.0,N/A
+Ambazari Flood,GMC_HOSPITAL,Govt Medical College (GMC),Health,OPERATIONAL,0.75,0.0,3
+Ambazari Flood,NMC_HQ_CIVIL,NMC Municipal HQ Civil Lines,Admin,DEGRADED,0.6,0.0,N/A
+Ambazari Flood,POLICE_HQ_CIVIL,Nagpur Police Commissionerate,Emergency,OPERATIONAL,0.7,0.0,3
+Ambazari Flood,FIRE_HQ_SADAR,Central Fire Rescue HQ Sadar,Emergency,OPERATIONAL,0.65,0.0,3
+MIHAN Cyberattack,KORADI_POWER,Koradi Thermal Power Stn,Power,OPERATIONAL,0.8,0.0,N/A
+MIHAN Cyberattack,KHAPARKHEDA_SUB,Khaparkheda Substation,Power,OPERATIONAL,0.7,0.0,N/A
+MIHAN Cyberattack,DHARAMPETH_SUB,Dharampeth Power Substation,Power,OPERATIONAL,0.6,0.0,N/A
+MIHAN Cyberattack,BUTIBORI_GRID,Butibori Industrial Substation,Power,OPERATIONAL,0.65,0.0,N/A
+MIHAN Cyberattack,GOREWADA_WATER,Gorewada Water Filtration,Water,OPERATIONAL,0.75,0.0,N/A
+MIHAN Cyberattack,AMBAZARI_RESERVOIR,Ambazari Sluice & Reservoir,Water,OPERATIONAL,0.6,0.0,N/A
+MIHAN Cyberattack,KANHAN_PUMP,Kanhan Water Pumping Line,Water,OPERATIONAL,0.7,0.0,N/A
+MIHAN Cyberattack,MIHAN_DATACENTER,MIHAN Cyber Data Hub,Telecom,OPERATIONAL,0.85,0.0,N/A
+MIHAN Cyberattack,SADAR_TELCO,Sadar BSNL Telecom Tower,Telecom,OPERATIONAL,0.6,0.0,N/A
+MIHAN Cyberattack,SITABULDI_METRO,Sitabuldi Interchange Metro,Transport,OPERATIONAL,0.7,0.0,N/A
+MIHAN Cyberattack,NAGPUR_RLY_JN,Nagpur Central Railway Jn,Transport,OPERATIONAL,0.65,0.0,N/A
+MIHAN Cyberattack,AIRPORT_SONEGAON,Dr. Ambedkar Intl Airport,Transport,OPERATIONAL,0.8,0.0,N/A
+MIHAN Cyberattack,ZERO_MILE_TRAFFIC,Zero Mile Traffic Control,Transport,OPERATIONAL,0.55,0.0,1
+MIHAN Cyberattack,AIIMS_NAGPUR,AIIMS Nagpur Super-Speciality,Health,DEGRADED,0.85,0.0,N/A
+MIHAN Cyberattack,GMC_HOSPITAL,Govt Medical College (GMC),Health,DEGRADED,0.75,0.0,N/A
+MIHAN Cyberattack,NMC_HQ_CIVIL,NMC Municipal HQ Civil Lines,Admin,OPERATIONAL,0.6,0.0,1
+MIHAN Cyberattack,POLICE_HQ_CIVIL,Nagpur Police Commissionerate,Emergency,OPERATIONAL,0.7,0.0,1
+MIHAN Cyberattack,FIRE_HQ_SADAR,Central Fire Rescue HQ Sadar,Emergency,OPERATIONAL,0.65,0.0,2
+Koradi Power Outage,KORADI_POWER,Koradi Thermal Power Stn,Power,OPERATIONAL,0.8,0.0,N/A
+Koradi Power Outage,KHAPARKHEDA_SUB,Khaparkheda Substation,Power,OPERATIONAL,0.7,0.0,1
+Koradi Power Outage,DHARAMPETH_SUB,Dharampeth Power Substation,Power,OPERATIONAL,0.6,0.0,2
+Koradi Power Outage,BUTIBORI_GRID,Butibori Industrial Substation,Power,OPERATIONAL,0.65,0.0,2
+Koradi Power Outage,GOREWADA_WATER,Gorewada Water Filtration,Water,OPERATIONAL,0.75,0.0,3
+Koradi Power Outage,AMBAZARI_RESERVOIR,Ambazari Sluice & Reservoir,Water,OPERATIONAL,0.6,0.0,N/A
+Koradi Power Outage,KANHAN_PUMP,Kanhan Water Pumping Line,Water,OPERATIONAL,0.7,0.0,2
+Koradi Power Outage,MIHAN_DATACENTER,MIHAN Cyber Data Hub,Telecom,OPERATIONAL,0.85,0.0,3
+Koradi Power Outage,SADAR_TELCO,Sadar BSNL Telecom Tower,Telecom,OPERATIONAL,0.6,0.0,3
+Koradi Power Outage,SITABULDI_METRO,Sitabuldi Interchange Metro,Transport,OPERATIONAL,0.7,0.0,3
+Koradi Power Outage,NAGPUR_RLY_JN,Nagpur Central Railway Jn,Transport,DEGRADED,0.65,0.0,N/A
+Koradi Power Outage,AIRPORT_SONEGAON,Dr. Ambedkar Intl Airport,Transport,OPERATIONAL,0.8,0.0,3
+Koradi Power Outage,ZERO_MILE_TRAFFIC,Zero Mile Traffic Control,Transport,OPERATIONAL,0.55,0.0,3
+Koradi Power Outage,AIIMS_NAGPUR,AIIMS Nagpur Super-Speciality,Health,OPERATIONAL,0.85,0.0,3
+Koradi Power Outage,GMC_HOSPITAL,Govt Medical College (GMC),Health,OPERATIONAL,0.75,0.0,4
+Koradi Power Outage,NMC_HQ_CIVIL,NMC Municipal HQ Civil Lines,Admin,OPERATIONAL,0.6,0.0,4
+Koradi Power Outage,POLICE_HQ_CIVIL,Nagpur Police Commissionerate,Emergency,OPERATIONAL,0.7,0.0,4
+Koradi Power Outage,FIRE_HQ_SADAR,Central Fire Rescue HQ Sadar,Emergency,OPERATIONAL,0.65,0.0,4
+Flood + Cyberattack,KORADI_POWER,Koradi Thermal Power Stn,Power,OPERATIONAL,0.8,0.0,N/A
+Flood + Cyberattack,KHAPARKHEDA_SUB,Khaparkheda Substation,Power,OPERATIONAL,0.7,0.0,N/A
+Flood + Cyberattack,DHARAMPETH_SUB,Dharampeth Power Substation,Power,OPERATIONAL,0.6,0.0,1
+Flood + Cyberattack,BUTIBORI_GRID,Butibori Industrial Substation,Power,OPERATIONAL,0.65,0.0,N/A
+Flood + Cyberattack,GOREWADA_WATER,Gorewada Water Filtration,Water,OPERATIONAL,0.75,0.0,2
+Flood + Cyberattack,AMBAZARI_RESERVOIR,Ambazari Sluice & Reservoir,Water,OPERATIONAL,0.6,0.0,N/A
+Flood + Cyberattack,KANHAN_PUMP,Kanhan Water Pumping Line,Water,OPERATIONAL,0.7,0.0,N/A
+Flood + Cyberattack,MIHAN_DATACENTER,MIHAN Cyber Data Hub,Telecom,OPERATIONAL,0.85,0.0,N/A
+Flood + Cyberattack,SADAR_TELCO,Sadar BSNL Telecom Tower,Telecom,OPERATIONAL,0.6,0.0,2
+Flood + Cyberattack,SITABULDI_METRO,Sitabuldi Interchange Metro,Transport,OPERATIONAL,0.7,0.0,2
+Flood + Cyberattack,NAGPUR_RLY_JN,Nagpur Central Railway Jn,Transport,DEGRADED,0.65,0.0,N/A
+Flood + Cyberattack,AIRPORT_SONEGAON,Dr. Ambedkar Intl Airport,Transport,OPERATIONAL,0.8,0.0,N/A
+Flood + Cyberattack,ZERO_MILE_TRAFFIC,Zero Mile Traffic Control,Transport,OPERATIONAL,0.55,0.0,1
+Flood + Cyberattack,AIIMS_NAGPUR,AIIMS Nagpur Super-Speciality,Health,OPERATIONAL,0.85,0.0,3
+Flood + Cyberattack,GMC_HOSPITAL,Govt Medical College (GMC),Health,OPERATIONAL,0.75,0.0,3
+Flood + Cyberattack,NMC_HQ_CIVIL,NMC Municipal HQ Civil Lines,Admin,OPERATIONAL,0.6,0.0,1
+Flood + Cyberattack,POLICE_HQ_CIVIL,Nagpur Police Commissionerate,Emergency,OPERATIONAL,0.7,0.0,3
+Flood + Cyberattack,FIRE_HQ_SADAR,Central Fire Rescue HQ Sadar,Emergency,OPERATIONAL,0.65,0.0,2

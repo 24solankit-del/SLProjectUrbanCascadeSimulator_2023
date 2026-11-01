@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="UrbanCascade Sim — Interactive 3D simulator for cascading failures in interdependent urban infrastructure networks. Visualize how one service failure spreads through power, water, telecom, transport, health, and emergency systems.">
+    <title>Nagpur Urban Infrastructure Cascade Simulator | Team Arc Reactors</title>
+
+    <!-- Three.js & OrbitControls via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════
+         3D CANVAS (Three.js render target)
+         ═══════════════════════════════════════════════════════ -->
+    <div id="canvas3d"></div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         TOP HEADER BAR — Global Status Telemetry
+         ═══════════════════════════════════════════════════════ -->
+    <header class="header-bar glass-panel">
+        <div class="header-left">
+            <div class="header-icon">
+                <i class="fa-solid fa-network-wired"></i>
+            </div>
+            <div>
+                <h1 class="header-title hud-glow">
+                    URBAN CASCADE SIMULATOR
+                    <span class="header-tag">S-03 • NAGPUR</span>
+                </h1>
+                <p class="header-subtitle">Team Arc Reactors | G H Raisoni Skilltech University</p>
+            </div>
+        </div>
+
+        <div class="header-telemetry">
+            <div class="telemetry-item">
+                <span class="telemetry-dot green"></span>
+                <span>Operational: <b id="stat-op" style="color: #34d399;">18</b></span>
+            </div>
+            <div class="telemetry-item">
+                <span class="telemetry-dot cyan"></span>
+                <span>Degraded: <b id="stat-deg" style="color: #22d3ee;">0</b></span>
+            </div>
+            <div class="telemetry-item">
+                <span class="telemetry-dot yellow"></span>
+                <span>Recovering: <b id="stat-rec" style="color: #fbbf24;">0</b></span>
+            </div>
+            <div class="telemetry-item">
+                <span class="telemetry-dot red"></span>
+                <span>Failed: <b id="stat-fail" style="color: #f87171;">0</b></span>
+            </div>
+            <div class="telemetry-divider">
+                <i class="fa-solid fa-shield-halved" style="color: #22d3ee;"></i>
+                <span>Resilience: <b id="stat-resilience" style="color: #67e8f9;">100.0%</b></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════
+         LEFT PANEL — Disruption Orchestrator & Controls
+         ═══════════════════════════════════════════════════════ -->
+    <aside class="control-panel-left glass-panel">
+
+        <!-- Scenario Presets -->
+        <div>
+            <h2 class="panel-heading">
+                <span><i class="fa-solid fa-bolt" style="margin-right: 0.4rem;"></i>DISRUPTION ORCHESTRATOR</span>
+                <span style="font-size: 0.6rem; color: #9ca3af;">TICK: <b id="current-tick" style="color: #67e8f9;">T+0</b></span>
+            </h2>
+
+            <div class="scenario-grid">
+                <button onclick="injectScenario('flood')" class="scenario-btn flood">
+                    <i class="fa-solid fa-water"></i> Ambazari Flood
+                </button>
+                <button onclick="injectScenario('cyber')" class="scenario-btn cyber">
+                    <i class="fa-solid fa-bug"></i> MIHAN Cyberattack
+                </button>
+                <button onclick="injectScenario('grid')" class="scenario-btn grid">
+                    <i class="fa-solid fa-tower-broadcast"></i> Koradi Power Outage
+                </button>
+                <button onclick="injectScenario('compound')" class="scenario-btn compound">
+                    <i class="fa-solid fa-biohazard"></i> Flood + Cyberattack
+                </button>
+            </div>
+
+            <!-- Manual Node Trigger -->
+            <div style="margin-bottom: 0.5rem;">
+                <label class="panel-label">Direct Trigger (Select Primary Target):</label>
+                <div class="panel-row">
+                    <select id="node-target-select" class="panel-select"></select>
+                    <button onclick="manualFailSelectedNode()" class="btn-fail">FAIL</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cascade Propagation Controls -->
+        <div class="panel-section">
+            <h3 class="panel-heading" style="font-size: 0.68rem; color: #d1d5db;">
+                <span><i class="fa-solid fa-play-pause" style="margin-right: 0.4rem; color: #22d3ee;"></i>CASCADE PROPAGATION</span>
+                <span id="cascade-state-tag" class="cascade-state-tag">IDLE</span>
+            </h3>
+            <div class="panel-row" style="margin-bottom: 0.5rem;">
+                <button id="btn-play" onclick="toggleAutoPlay()" class="btn-sim play">
+                    <i class="fa-solid fa-play"></i> Auto Sim
+                </button>
+                <button onclick="stepCascadeWave()" class="btn-sim step">
+                    <i class="fa-solid fa-forward-step"></i> Step Wave
+                </button>
+                <button onclick="resetSimulation()" class="btn-icon">
+                    <i class="fa-solid fa-rotate-left"></i>
+                </button>
+            </div>
+
+            <div class="toggle-container" style="margin-top: 0.4rem;">
+                <span>Auto-Recovery Engine:</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="toggle-autorecovery" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Seed Reproducibility Engine -->
+        <div class="panel-section">
+            <h3 style="font-size: 0.68rem; font-weight: 600; color: #d1d5db; margin-bottom: 0.2rem;">
+                <i class="fa-solid fa-fingerprint" style="margin-right: 0.4rem; color: #22d3ee;"></i>SEED REPRODUCIBILITY ENGINE
+            </h3>
+            <p style="font-size: 0.6rem; color: #6b7280; margin-bottom: 0.4rem;">Guarantees exact bit-level propagation reproduction.</p>
+            <div class="panel-row">
+                <input type="text" id="seed-input" value="NAGPUR-SMART-2026" class="panel-input">
+                <button onclick="applySeed()" class="btn-primary">Apply</button>
+            </div>
+        </div>
+
+        <!-- Live Sensor API -->
+        <div class="panel-section">
+            <h3 style="font-size: 0.68rem; font-weight: 600; color: #d1d5db; margin-bottom: 0.2rem; display: flex; align-items: center; justify-content: space-between;">
+                <span><i class="fa-solid fa-satellite-dish" style="margin-right: 0.4rem; color: #22d3ee;"></i>LIVE SENSOR API</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="toggle-livedata" onchange="toggleLiveData()">
+                    <span class="toggle-slider green-toggle"></span>
+                </label>
+            </h3>
+            <p style="font-size: 0.6rem; color: #6b7280;">Injects dynamic real-time load fluctuations into operational nodes.</p>
+        </div>
+
+        <!-- Dynamic Graph Injector -->
+        <div class="panel-section">
+            <details class="panel-details">
+                <summary>
+                    <span><i class="fa-solid fa-plus-circle" style="margin-right: 0.3rem;"></i>Dynamic Graph Injector</span>
+                    <i class="fa-solid fa-chevron-down chevron"></i>
+                </summary>
+                <div class="panel-details-inner">
+                    <input id="dyn-node-name" placeholder="Node Name (e.g., Kalamna Mandi Sub)" class="panel-input" style="margin-bottom: 0.4rem; font-family: 'Inter', sans-serif;">
+                    <div class="dyn-grid">
+                        <select id="dyn-node-dept" class="panel-select">
+                            <option value="Power">Power</option>
+                            <option value="Water">Water</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Telecom">Telecom</option>
+                            <option value="Health">Health</option>
+                            <option value="Emergency">Emergency</option>
+                        </select>
+                        <select id="dyn-node-parent" class="panel-select"></select>
+                    </div>
+                    <button onclick="dynamicAddNode()" class="btn-inject">+ Inject Node & Edge</button>
+                </div>
+            </details>
+        </div>
+
+        <!-- Export Buttons -->
+        <div class="panel-section">
+            <h3 style="font-size: 0.68rem; font-weight: 600; color: #d1d5db; margin-bottom: 0.4rem;">
+                <i class="fa-solid fa-download" style="margin-right: 0.4rem; color: #22d3ee;"></i>EXPORT
+            </h3>
+            <div style="display: flex; gap: 0.4rem;">
+                <button onclick="exportSimulation()" class="btn-export" style="flex: 1;">
+                    <i class="fa-solid fa-file-code"></i> JSON State
+                </button>
+                <button onclick="exportCSV()" class="btn-export" style="flex: 1;">
+                    <i class="fa-solid fa-file-csv"></i> CSV Log
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ═══════════════════════════════════════════════════════
+         RIGHT PANEL — Real-Time Cascade Telemetry
+         ═══════════════════════════════════════════════════════ -->
+    <aside class="telemetry-panel-right glass-panel">
+        <h2 class="panel-heading">
+            <span><i class="fa-solid fa-chart-line" style="margin-right: 0.4rem;"></i>REAL-TIME CASCADE TELEMETRY</span>
+            <span style="font-size: 0.6rem; color: #34d399; font-family: 'JetBrains Mono', monospace;">LIVE BFS ENGINE</span>
+        </h2>
+
+        <!-- Node Inspector Card -->
+        <div class="inspector-card">
+            <div class="inspector-header">
+                <span id="insp-name" class="inspector-name">Click a node on 3D Map</span>
+                <span id="insp-badge" class="inspector-badge status-op">READY</span>
+            </div>
+            <div class="inspector-grid">
+                <div class="inspector-row"><span>Department:</span> <b id="insp-dept">--</b></div>
+                <div class="inspector-row"><span>Location (Nagpur):</span> <b id="insp-coord">--</b></div>
+                <div class="inspector-row"><span>Dependency Threshold:</span> <b id="insp-thresh">--</b></div>
+                <div class="inspector-row"><span>Upstream Providers:</span> <b id="insp-parents" class="cyan">--</b></div>
+                <div class="inspector-row"><span>Downstream Dependencies:</span> <b id="insp-children" class="red">--</b></div>
+                <div class="inspector-row inspector-divider"><span>Percent Affected:</span> <b id="insp-percent" class="yellow">--</b></div>
+                <div class="inspector-row"><span>Level of Trouble:</span> <b id="insp-trouble">--</b></div>
+                <div class="inspector-row"><span>Time to Recover:</span> <b id="insp-eta" class="emerald">--</b></div>
+            </div>
+        </div>
+
+        <!-- Cascade Progression Chart -->
+        <div class="chart-container">
+            <div class="chart-header">
+                <span class="chart-title"><i class="fa-solid fa-chart-area" style="margin-right: 0.3rem; color: #22d3ee;"></i>Cascade Progression</span>
+                <span style="font-size: 0.55rem; color: #6b7280;">Affected / Failed / Recovering</span>
+            </div>
+            <canvas id="cascade-chart-canvas" class="chart-canvas" width="300" height="80"></canvas>
+        </div>
+
+        <!-- Timestep Event Table -->
+        <div>
+            <div class="event-log-header">
+                <span><i class="fa-solid fa-table" style="margin-right: 0.3rem;"></i>Timestep Event Log</span>
+            </div>
+            <div class="timestep-table-container">
+                <table class="timestep-table">
+                    <thead>
+                        <tr>
+                            <th>Tick</th>
+                            <th>Node</th>
+                            <th>Dept</th>
+                            <th>State</th>
+                            <th>Depth</th>
+                        </tr>
+                    </thead>
+                    <tbody id="timestep-tbody">
+                        <!-- Populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Live Event Stream Log -->
+        <div class="event-log-container">
+            <div class="event-log-header">
+                <span>Cascade Propagation Wave Log</span>
+                <button onclick="clearLogs()" class="btn-clear-log">Clear</button>
+            </div>
+            <div id="event-log" class="event-log">
+                <!-- Populated dynamically on init -->
+            </div>
+        </div>
+    </aside>
+
+    <!-- ═══════════════════════════════════════════════════════
+         BOTTOM METRICS PANEL — Cascade Depth / Affected / Recovery / Resilience
+         ═══════════════════════════════════════════════════════ -->
+    <div class="metrics-panel-bottom glass-panel">
+        <div class="metric-card depth">
+            <span class="metric-label">Cascade Depth</span>
+            <span id="metric-depth-val" class="metric-value metric-glow">0</span>
+            <span id="metric-depth-sub" class="metric-sub">max: 0 hops</span>
+            <canvas id="spark-depth" class="mini-chart" width="100" height="30"></canvas>
+        </div>
+
+        <div class="metric-card affected">
+            <span class="metric-label">Affected Services</span>
+            <span id="metric-affected-val" class="metric-value metric-glow">0</span>
+            <span id="metric-affected-sub" class="metric-sub">of 18 services</span>
+            <canvas id="spark-affected" class="mini-chart" width="100" height="30"></canvas>
+        </div>
+
+        <div class="metric-card recovery">
+            <span class="metric-label">Recovery ETA</span>
+            <span id="metric-recovery-val" class="metric-value metric-glow">0</span>
+            <span id="metric-recovery-sub" class="metric-sub">all clear</span>
+            <canvas id="spark-recovery" class="mini-chart" width="100" height="30"></canvas>
+        </div>
+
+        <div class="metric-card resilience-card">
+            <span class="metric-label">Resilience Index</span>
+            <span id="metric-resilience-val" class="metric-value metric-glow">100.0%</span>
+            <span class="metric-sub">system capacity</span>
+            <canvas id="spark-resilience" class="mini-chart" width="100" height="30"></canvas>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         BOTTOM NAVIGATION GUIDE
+         ═══════════════════════════════════════════════════════ -->
+    <div class="nav-guide glass-panel">
+        <div class="nav-item">
+            <span class="nav-key"><i class="fa-solid fa-rotate"></i> Rotate:</span> Left-Click + Drag
+        </div>
+        <div class="nav-item">
+            <span class="nav-key"><i class="fa-solid fa-up-down-left-right"></i> Pan:</span> Right-Click + Drag
+        </div>
+        <div class="nav-item">
+            <span class="nav-key"><i class="fa-solid fa-magnifying-glass-plus"></i> Zoom:</span> Scroll Wheel
+        </div>
+        <div class="nav-item">
+            <span class="nav-key"><i class="fa-solid fa-hand-pointer"></i> Inspect:</span> Click Node
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         MODULAR JAVASCRIPT (Load Order Matters)
+         ═══════════════════════════════════════════════════════ -->
+    <script src="js/config.js"></script>
+    <script src="js/prng.js"></script>
+    <script src="js/graph-engine.js"></script>
+    <script src="js/metrics.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/ui-controller.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+tick,nodeId,nodeName,dept,event,fromState,toState,cascadeDepth
+0,AMBAZARI_RESERVOIR,Ambazari Sluice & Reservoir,Water,[T+0] DISRUPTION: Ambazari Sluice & Reservoir directly FAILED.,OPERATIONAL,FAILED,0
+0,MIHAN_DATACENTER,MIHAN Cyber Data Hub,Telecom,[T+0] DISRUPTION: MIHAN Cyber Data Hub directly FAILED.,OPERATIONAL,FAILED,0
+1,AMBAZARI_RESERVOIR,Ambazari Sluice & Reservoir,Water,[T+1] Node Ambazari Sluice & Reservoir entered RECOVERY state.,FAILED,RECOVERING,0
+1,MIHAN_DATACENTER,MIHAN Cyber Data Hub,Telecom,[T+1] Node MIHAN Cyber Data Hub entered RECOVERY state.,FAILED,RECOVERING,0
+1,DHARAMPETH_SUB,Dharampeth Power Substation,Power,[T+1] CASCADE HIT: Dharampeth Power Substation FAILED! Strain: 0.70 >= Thresh 0.6,OPERATIONAL,FAILED,1
+1,SITABULDI_METRO,Sitabuldi Interchange Metro,Transport,[T+1] DEGRADED: Sitabuldi Interchange Metro entered DEGRADED state. Strain: 0.65,OPERATIONAL,DEGRADED,0
+1,ZERO_MILE_TRAFFIC,Zero Mile Traffic Control,Transport,[T+1] CASCADE HIT: Zero Mile Traffic Control FAILED! Strain: 0.85 >= Thresh 0.55,OPERATIONAL,FAILED,1
+1,NMC_HQ_CIVIL,NMC Municipal HQ Civil Lines,Admin,[T+1] CASCADE HIT: NMC Municipal HQ Civil Lines FAILED! Strain: 0.75 >= Thresh 0.6,OPERATIONAL,FAILED,1
+1,POLICE_HQ_CIVIL,Nagpur Police Commissionerate,Emergency,[T+1] CASCADE HIT: Nagpur Police Commissionerate FAILED! Strain: 0.80 >= Thresh 0.7,OPERATIONAL,FAILED,1
+2,DHARAMPETH_SUB,Dharampeth Power Substation,Power,[T+2] Node Dharampeth Power Substation entered RECOVERY state.,FAILED,RECOVERING,0
+2,POLICE_HQ_CIVIL,Nagpur Police Commissionerate,Emergency,[T+2] Node Nagpur Police Commissionerate entered RECOVERY state.,FAILED,RECOVERING,0
+2,GOREWADA_WATER,Gorewada Water Filtration,Water,[T+2] CASCADE HIT: Gorewada Water Filtration FAILED! Strain: 0.85 >= Thresh 0.75,OPERATIONAL,FAILED,2
+2,SADAR_TELCO,Sadar BSNL Telecom Tower,Telecom,[T+2] CASCADE HIT: Sadar BSNL Telecom Tower FAILED! Strain: 0.75 >= Thresh 0.6,OPERATIONAL,FAILED,2
+2,SITABULDI_METRO,Sitabuldi Interchange Metro,Transport,[T+2] CASCADE HIT: Sitabuldi Interchange Metro FAILED! Strain: 0.90 >= Thresh 0.7,DEGRADED,FAILED,2
+2,NAGPUR_RLY_JN,Nagpur Central Railway Jn,Transport,[T+2] DEGRADED: Nagpur Central Railway Jn entered DEGRADED state. Strain: 0.30,OPERATIONAL,DEGRADED,0
+2,GMC_HOSPITAL,Govt Medical College (GMC),Health,[T+2] DEGRADED: Govt Medical College (GMC) entered DEGRADED state. Strain: 0.60,OPERATIONAL,DEGRADED,0
+2,FIRE_HQ_SADAR,Central Fire Rescue HQ Sadar,Emergency,[T+2] CASCADE HIT: Central Fire Rescue HQ Sadar FAILED! Strain: 0.70 >= Thresh 0.65,OPERATIONAL,FAILED,2
+3,GOREWADA_WATER,Gorewada Water Filtration,Water,[T+3] Node Gorewada Water Filtration entered RECOVERY state.,FAILED,RECOVERING,0
+3,AMBAZARI_RESERVOIR,Ambazari Sluice & Reservoir,Water,[T+3] Node Ambazari Sluice & Reservoir fully RESTORED to Operational.,RECOVERING,OPERATIONAL,0
+3,MIHAN_DATACENTER,MIHAN Cyber Data Hub,Telecom,[T+3] Node MIHAN Cyber Data Hub fully RESTORED to Operational.,RECOVERING,OPERATIONAL,0
+3,SADAR_TELCO,Sadar BSNL Telecom Tower,Telecom,[T+3] Node Sadar BSNL Telecom Tower entered RECOVERY state.,FAILED,RECOVERING,0
+3,SITABULDI_METRO,Sitabuldi Interchange Metro,Transport,[T+3] Node Sitabuldi Interchange Metro entered RECOVERY state.,FAILED,RECOVERING,0
+3,ZERO_MILE_TRAFFIC,Zero Mile Traffic Control,Transport,[T+3] Node Zero Mile Traffic Control entered RECOVERY state.,FAILED,RECOVERING,0
+3,AIIMS_NAGPUR,AIIMS Nagpur Super-Speciality,Health,[T+3] CASCADE HIT: AIIMS Nagpur Super-Speciality FAILED! Strain: 1.10 >= Thresh 0.85,OPERATIONAL,FAILED,3
+3,GMC_HOSPITAL,Govt Medical College (GMC),Health,[T+3] CASCADE HIT: Govt Medical College (GMC) FAILED! Strain: 1.35 >= Thresh 0.75,DEGRADED,FAILED,3
+3,POLICE_HQ_CIVIL,Nagpur Police Commissionerate,Emergency,[T+3] CASCADE HIT: Nagpur Police Commissionerate FAILED! Strain: 0.70 >= Thresh 0.7,RECOVERING,FAILED,3
+4,DHARAMPETH_SUB,Dharampeth Power Substation,Power,[T+4] Node Dharampeth Power Substation fully RESTORED to Operational.,RECOVERING,OPERATIONAL,0
+4,GMC_HOSPITAL,Govt Medical College (GMC),Health,[T+4] Node Govt Medical College (GMC) entered RECOVERY state.,FAILED,RECOVERING,0
+4,POLICE_HQ_CIVIL,Nagpur Police Commissionerate,Emergency,[T+4] Node Nagpur Police Commissionerate entered RECOVERY state.,FAILED,RECOVERING,0
+4,FIRE_HQ_SADAR,Central Fire Rescue HQ Sadar,Emergency,[T+4] Node Central Fire Rescue HQ Sadar entered RECOVERY state.,FAILED,RECOVERING,0
+5,GOREWADA_WATER,Gorewada Water Filtration,Water,[T+5] Node Gorewada Water Filtration fully RESTORED to Operational.,RECOVERING,OPERATIONAL,0
+5,SADAR_TELCO,Sadar BSNL Telecom Tower,Telecom,[T+5] Node Sadar BSNL Telecom Tower fully RESTORED to Operational.,RECOVERING,OPERATIONAL,0
+5,SITABULDI_METRO,Sitabuldi Interchange Metro,Transport,[T+5] Node Sitabuldi Interchange Metro fully RESTORED to Operational.,RECOVERING,OPERATIONAL,0
+5,ZERO_MILE_TRAFFIC,Zero Mile Traffic Control,Transport,[T+5] Node Zero Mile Traffic Control fully RESTORED to Operational.,RECOVERING,OPERATIONAL,0
+5,AIIMS_NAGPUR,AIIMS Nagpur Super-Speciality,Health,[T+5] Node AIIMS Nagpur Super-Speciality entered RECOVERY state.,FAILED,RECOVERING,0
+5,NMC_HQ_CIVIL,NMC Municipal HQ Civil Lines,Admin,[T+5] Node NMC Municipal HQ Civil Lines entered RECOVERY state.,FAILED,RECOVERING,0
+6,GMC_HOSPITAL,Govt Medical College (GMC),Health,[T+6] Node Govt Medical College (GMC) fully RESTORED to Operational.,RECOVERING,OPERATIONAL,0
+6,POLICE_HQ_CIVIL,Nagpur Police Commissionerate,Emergency,[T+6] Node Nagpur Police Commissionerate fully RESTORED to Operational.,RECOVERING,OPERATIONAL,0
+6,FIRE_HQ_SADAR,Central Fire Rescue HQ Sadar,Emergency,[T+6] Node Central Fire Rescue HQ Sadar fully RESTORED to Operational.,RECOVERING,OPERATIONAL,0
+7,AIIMS_NAGPUR,AIIMS Nagpur Super-Speciality,Health,[T+7] Node AIIMS Nagpur Super-Speciality fully RESTORED to Operational.,RECOVERING,OPERATIONAL,0
+7,NMC_HQ_CIVIL,NMC Municipal HQ Civil Lines,Admin,[T+7] Node NMC Municipal HQ Civil Lines fully RESTORED to Operational.,RECOVERING,OPERATIONAL,0

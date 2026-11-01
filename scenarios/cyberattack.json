@@ -1,0 +1,11 @@
+{
+    "name": "MIHAN Cyberattack",
+    "description": "Coordinated ransomware attack targets the MIHAN Cyber Data Hub, crippling municipal cloud services, fiber internet backbone, and automated traffic control systems.",
+    "seed": "NAGPUR-CYBER-2026",
+    "failNodes": ["MIHAN_DATACENTER"],
+    "messages": {
+        "MIHAN_DATACENTER": "[CYBER INJECTED] Coordinated Ransomware Attack on MIHAN Cyber Hub!"
+    },
+    "severity": "CRITICAL",
+    "affectedSectors": ["Telecom", "Transport", "Emergency", "Admin"]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Koradi Power Outage",
+    "description": "Severe transformer fire at Koradi Thermal Power Station causes complete power generation failure. Cascade propagates through the entire 400kV grid, affecting all dependent services.",
+    "seed": "NAGPUR-POWER-2026",
+    "failNodes": ["KORADI_POWER"],
+    "messages": {
+        "KORADI_POWER": "[GRID INJECTED] Severe Transformer Fire at Koradi Power Station!"
+    },
+    "severity": "CATASTROPHIC",
+    "affectedSectors": ["Power", "Water", "Telecom", "Transport", "Health", "Emergency", "Admin"]
+}

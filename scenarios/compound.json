@@ -1,0 +1,12 @@
+{
+    "name": "Flood + Cyberattack (Compound)",
+    "description": "Simultaneous multi-vector disaster: Ambazari Reservoir flood AND MIHAN cyberattack occur at the same time, overwhelming the city's resilience from multiple directions.",
+    "seed": "NAGPUR-COMPOUND-2026",
+    "failNodes": ["AMBAZARI_RESERVOIR", "MIHAN_DATACENTER"],
+    "messages": {
+        "AMBAZARI_RESERVOIR": "[COMPOUND INJECTED] Ambazari Sluice Overflow!",
+        "MIHAN_DATACENTER": "[COMPOUND INJECTED] Simultaneous Cyberattack on MIHAN Fiber Backbone!"
+    },
+    "severity": "CATASTROPHIC",
+    "affectedSectors": ["Water", "Telecom", "Power", "Transport", "Health", "Emergency", "Admin"]
+}
